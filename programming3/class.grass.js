@@ -1,4 +1,5 @@
-class Grass extends LivingCreature{
+var LivingCreature = require("./class.LivingCreature")
+module.exports = class Grass extends LivingCreature{
    
     mul() {
         let found = this.search(0);

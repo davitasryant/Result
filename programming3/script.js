@@ -122,22 +122,22 @@ function draw() {
         }
     }
 
-    for (let i in grassArr) {
-        grassArr[i].mul()
-    }
+    // for (let i in grassArr) {
+    //     grassArr[i].mul()
+    // }
 
-    for (let i in grassEatArr) {
-        grassEatArr[i].eat()
-    }
+    // for (let i in grassEatArr) {
+    //     grassEatArr[i].eat()
+    // }
 
-    for (let i in predatorArr) {
-        predatorArr[i].eat()
-    }
-    for (let i in mulBoostArr) {
-        mulBoostArr[i].move()
-    }
-    for(let i in virusArr){
-        virusArr[i].move()
-    }
+    // for (let i in predatorArr) {
+    //     predatorArr[i].eat()
+    // }
+    // for (let i in mulBoostArr) {
+    //     mulBoostArr[i].move()
+    // }
+    // for(let i in virusArr){
+    //     virusArr[i].move()
+    // }
 }
 

@@ -1,4 +1,5 @@
-class Mulboost extends LivingCreature{
+var LivingCreature = require("./class.LivingCreature")
+module.exports = class Mulboost extends LivingCreature{
     constructor(x, y) {
         super(x,y);
         this.directions = [];

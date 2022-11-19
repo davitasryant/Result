@@ -1,4 +1,5 @@
-class Virus extends LivingCreature {
+var LivingCreature = require("./class.LivingCreature")
+module.exports = class Virus extends LivingCreature {
     constructor(x, y) {
         super(x,y);
         this.directions = [];
