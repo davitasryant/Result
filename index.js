@@ -1,15 +1,14 @@
 
-var Grass = require("./programming3/class.grass")
-var GrassEater = require("./programming3/class.grasseater")
-var Predator = require("./programming3/class.predator")
-var Mulboost = require("./programming3/class.mulboost")
-var Virus = require("./programming3/class.virus")
+ Grass = require("./programming3/class.grass")
+ GrassEater = require("./programming3/class.grasseater")
+ Predator = require("./programming3/class.predator")
+ Mulboost = require("./programming3/class.mulboost")
+ Virus = require("./programming3/class.virus")
 
 var express = require("express");
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-
 
 app.use(express.static("programming3"));
 
@@ -20,14 +19,12 @@ app.get("/", function (req, res) {
 server.listen(3000);
 
 
-let matrix = generate(80, 100, 15, 5, 30, 20)
-
-
-let grassArr = [];
-let grassEatArr = [];
-let predatorArr = [];
-let mulBoostArr = [];
-let virusArr = [];
+var grassArr = [];
+var grassEatArr = [];
+var predatorArr = [];
+var mulBoostArr = [];
+var virusArr = [];
+var matrix = generate(80, 100, 15, 5, 30, 20)
 
 
 function generate(matLen, gr, grEat, pred, mB,virus) {
@@ -82,7 +79,45 @@ function generate(matLen, gr, grEat, pred, mB,virus) {
     return matrix
 }
 
+
+
+
+
+
+
+for (let y = 0; y < matrix.length; y++) {
+    for (let x = 0; x < matrix[0].length; x++) {
+        if (matrix[y][x] == 1) {
+            let gr = new Grass(x, y);
+            grassArr.push(gr);
+        }
+        else if (matrix[y][x] == 2) {
+            let grEat = new GrassEater(x, y)
+            grassEatArr.push(grEat)
+        }
+
+        else if (matrix[y][x] == 3) {
+            let pred = new Predator(x, y)
+            predatorArr.push(pred)
+        }
+        else if (matrix[y][x] == 4) {
+            let mB = new Mulboost(x, y)
+            mulBoostArr.push(mB)
+        }
+        else if (matrix[y][x] == 5) {
+            let virus = new Virus(x, y)
+            virusArr.push(virus)
+        }
+    }
+}
+io.on('connection', function (socket) {
+
+   console.log("Connected")
+    
+});
+
 function game() {
+
     for (let i in grassArr) {
         grassArr[i].mul()
     }
@@ -100,6 +135,7 @@ function game() {
     for (let i in virusArr) {
         virusArr[i].move()
     }
+    io.sockets.emit('display message', matrix);
 }
 setInterval(game,1000)
 
