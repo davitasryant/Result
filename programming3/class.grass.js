@@ -3,7 +3,7 @@ module.exports = class Grass extends LivingCreature{
    
     mul() {
         let found = this.search(0);
-        var foundRand = random(found);
+        var foundRand = this.random(found);
 
         this.multiplay++;
         if (this.multiplay >= 2 && foundRand) {

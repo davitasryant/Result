@@ -1,9 +1,9 @@
 
- Grass = require("./programming3/class.grass")
- GrassEater = require("./programming3/class.grasseater")
- Predator = require("./programming3/class.predator")
- Mulboost = require("./programming3/class.mulboost")
- Virus = require("./programming3/class.virus")
+Grass = require("./programming3/class.grass")
+GrassEater = require("./programming3/class.grasseater")
+Predator = require("./programming3/class.predator")
+Mulboost = require("./programming3/class.mulboost")
+Virus = require("./programming3/class.virus")
 
 var express = require("express");
 var app = express();
@@ -19,12 +19,12 @@ app.get("/", function (req, res) {
 server.listen(3000);
 
 
-var grassArr = [];
-var grassEatArr = [];
-var predatorArr = [];
-var mulBoostArr = [];
-var virusArr = [];
-var matrix = generate(80, 100, 15, 5, 30, 20)
+grassArr = [];
+grassEatArr = [];
+predatorArr = [];
+mulBoostArr = [];
+virusArr = [];
+matrix = generate(80, 100, 15, 5, 30, 20)
 
 
 function generate(matLen, gr, grEat, pred, mB,virus) {

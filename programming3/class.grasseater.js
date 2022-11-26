@@ -12,7 +12,7 @@ module.exports = class GrassEater extends LivingCreature{
 
     mul() {
         let found = this.search(0);
-        var foundRand = random(found);
+        var foundRand = this.random(found);
 
         if (foundRand) {
             let x = foundRand[0];
@@ -28,7 +28,7 @@ module.exports = class GrassEater extends LivingCreature{
     move() {
         this.energy--
         let found = this.search(0);
-        var foundRand = random(found);
+        var foundRand = this.random(found);
         if (foundRand && this.energy >= 0) {
             let x = foundRand[0];
             let y = foundRand[1];
@@ -43,11 +43,11 @@ module.exports = class GrassEater extends LivingCreature{
 
     eat() {
         let found = this.search(1);
-        var foundRand = random(found);
+        var foundRand = this.random(found);
         let found1 = this.search(4);
-        let found1Rand = random(found1);
+        let found1Rand = this.random(found1);
         let found2 = this.search(5)
-        let found2Rand = random(found2)
+        let found2Rand = this.random(found2)
         if (found1Rand) {
             let x = found1Rand[0];
             let y = found1Rand[1];

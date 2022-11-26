@@ -13,7 +13,7 @@ module.exports = class Predator extends LivingCreature{
     move() {
         this.energy--
         let found = this.search(0);
-        var foundRand = random(found);
+        var foundRand = this.random(found);
         if (foundRand && this.energy >= 0) {
             let x = foundRand[0];
             let y = foundRand[1];
@@ -28,7 +28,7 @@ module.exports = class Predator extends LivingCreature{
 
     mul() {
         let found = this.search(0);
-        var foundRand = random(found);
+        var foundRand = this.random(found);
 
         if (foundRand) {
             let x = foundRand[0];
@@ -42,13 +42,13 @@ module.exports = class Predator extends LivingCreature{
 
     eat() {
         let found = this.search(1);
-        var foundRand = random(found);
+        var foundRand = this.random(found);
         let found1 = this.search(2)
-        let foundRand1 = random(found1)
+        let foundRand1 = this.random(found1)
         let found2 = this.search(4)
-        let foundRand2 = random(found2)
+        let foundRand2 = this.random(found2)
         let found3 = this.search(5)
-        let foundRand3 = random(found3)
+        let foundRand3 = this.random(found3)
         if (foundRand1) {
             this.energy++
             let x = foundRand1[0];

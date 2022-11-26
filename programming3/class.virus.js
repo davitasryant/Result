@@ -12,7 +12,7 @@ module.exports = class Virus extends LivingCreature {
 
     move() {
         let found = this.search(1);
-        var foundRand = random(found);
+        var foundRand = this.random(found);
         if (foundRand) {
             let x = foundRand[0];
             let y = foundRand[1];

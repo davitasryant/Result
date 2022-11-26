@@ -3,7 +3,7 @@ let socket = io()
 
 function setup() {
     frameRate(20);
-    createCanvas(3 * side, 3 * side);
+    createCanvas(80 * side, 80 * side);
     background('#acacac');
 }
 

@@ -1,5 +1,5 @@
 module.exports = class LivingCreature {
-    constructor(x, y){
+    constructor(x, y) {
         this.x = x;
         this.y = y;
         this.multiplay = 0;
@@ -40,5 +40,9 @@ module.exports = class LivingCreature {
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
         ];
+    }
+
+    random(found) {
+        return found[Math.floor(Math.random()*found.length)]
     }
 }
