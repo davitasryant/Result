@@ -30,6 +30,7 @@ grassEatArr = [];
 predatorArr = [];
 mulBoostArr = [];
 virusArr = [];
+// weather = ["garun", "ashun", "amar", "dzmer"]
 matrix = generate(60, 100, 15, 5, 30, 20)
 
 
@@ -87,7 +88,7 @@ function generate(matLen, gr, grEat, pred, mB, virus) {
 }
 
 
-
+// tany function weather anem vory xrgem io.emit io.on stanum 
 
 
 
