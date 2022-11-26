@@ -18,16 +18,23 @@ app.get("/", function (req, res) {
 
 server.listen(3000);
 
-
+stat = {
+    grass: 0,
+    grasseater: 0,
+    predator: 0,
+    mulboost: 0,
+    virus: 0,
+}
 grassArr = [];
 grassEatArr = [];
 predatorArr = [];
 mulBoostArr = [];
 virusArr = [];
-matrix = generate(80, 100, 15, 5, 30, 20)
+matrix = generate(60, 100, 15, 5, 30, 20)
 
 
-function generate(matLen, gr, grEat, pred, mB,virus) {
+
+function generate(matLen, gr, grEat, pred, mB, virus) {
     let matrix = []
     for (let i = 0; i < matLen; i++) {
         matrix[i] = []
@@ -85,6 +92,10 @@ function generate(matLen, gr, grEat, pred, mB,virus) {
 
 
 
+
+
+
+
 for (let y = 0; y < matrix.length; y++) {
     for (let x = 0; x < matrix[0].length; x++) {
         if (matrix[y][x] == 1) {
@@ -112,12 +123,12 @@ for (let y = 0; y < matrix.length; y++) {
 }
 io.on('connection', function (socket) {
 
-   console.log("Connected")
-    
+    console.log("Connected")
+
 });
 
 function game() {
-
+    //  console.log(stat)
     for (let i in grassArr) {
         grassArr[i].mul()
     }
@@ -136,7 +147,15 @@ function game() {
         virusArr[i].move()
     }
     io.sockets.emit('display message', matrix);
+    stat.grass = grassArr.length
+    stat.grasseater = grassEatArr.length
+    stat.predator = predatorArr.length
+    stat.mulboost = mulBoostArr.length
+    stat.virus = virusArr.length
+    console.log(stat)
 }
-setInterval(game,1000)
+
+setInterval(game, 1000)
+
 
 

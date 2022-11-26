@@ -3,14 +3,13 @@ let socket = io()
 
 function setup() {
     frameRate(20);
-    createCanvas(80 * side, 80 * side);
+    createCanvas(60 * side, 60 * side);
     background('#acacac');
 }
 
-socket.on('display message', draww);
+
 
 function draww(matrix) {
-
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -38,5 +37,5 @@ function draww(matrix) {
     }
 }
 
-// setInterval(draww,1000)
 
+socket.on('display message', draww);
