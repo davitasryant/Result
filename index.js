@@ -30,8 +30,10 @@ grassEatArr = [];
 predatorArr = [];
 mulBoostArr = [];
 virusArr = [];
-// weather = ["garun", "ashun", "amar", "dzmer"]
-matrix = generate(60, 100, 15, 5, 30, 20)
+let arr = [1,2]
+matrix = generate(60, 100, 15, 7, 30, 20)
+weather = 1
+
 
 
 
@@ -88,12 +90,6 @@ function generate(matLen, gr, grEat, pred, mB, virus) {
 }
 
 
-// tany function weather anem vory xrgem io.emit io.on stanum 
-
-
-
-
-
 
 
 
@@ -129,7 +125,6 @@ io.on('connection', function (socket) {
 });
 
 function game() {
-    //  console.log(stat)
     for (let i in grassArr) {
         grassArr[i].mul()
     }
@@ -146,8 +141,15 @@ function game() {
     }
     for (let i in virusArr) {
         virusArr[i].move()
-    }
+    }    
+    if(weather == 1){
     io.sockets.emit('display message', matrix);
+    }
+    else if(weather == 2){
+        io.sockets.emit('display message1', matrix);
+    }
+
+    io.sockets.emit('grass', stat);
     stat.grass = grassArr.length
     stat.grasseater = grassEatArr.length
     stat.predator = predatorArr.length
@@ -155,7 +157,17 @@ function game() {
     stat.virus = virusArr.length
     console.log(stat)
 }
+function random(found) {
+    return found[Math.floor(Math.random()*found.length)]
+}
 
+function weat(){
+    weather = random(arr)
+    console.log(weather)
+}
+
+
+setInterval(weat, 10000)
 setInterval(game, 1000)
 
 

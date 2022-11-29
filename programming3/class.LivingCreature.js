@@ -45,4 +45,5 @@ module.exports = class LivingCreature {
     random(found) {
         return found[Math.floor(Math.random()*found.length)]
     }
+    
 }

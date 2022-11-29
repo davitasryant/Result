@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
+    "node-localstorage": "^2.2.1",
     "node-p5": "^1.0.4",
     "socket.io": "^4.5.4"
   }
