@@ -1,16 +1,30 @@
 <html>
 
 <head>
-   <h1 id="time">Grass - <div id = 'grass'></div></h1> 
-   <button type="button" onClick="window.location.reload();">Close</button>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
-   <script src="socket.io/socket.io.js"></script>
-   <script src="script.js"></script>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+
+   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+   <div class="results">
+      <h3 id="gr">Խոտ - <span id='grass'></span></h3>
+      <h3 id="great">Խոտակեր - <span id='grasseater'></span></h3>
+      <h3 id="pred">Ամենակեր - <span id='predator'></span></h3>
+      <h3 id="vi">Վիրուս - <span id='vir'></span> </h3>
+      <h3 id="bon">Բոնուս - <span id='bonus'></span></h3>
+      <h3 id="w">Եղանակ - <span id='weather'></span></h3>
+
+   </div>
+
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+   <script src="socket.io/socket.io.js"></script>
+   <script src="script.js"></script>
 </body>
 
 </html>
-
-

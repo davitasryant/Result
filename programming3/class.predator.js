@@ -1,7 +1,7 @@
 var LivingCreature = require("./class.LivingCreature")
-module.exports = class Predator extends LivingCreature{
+module.exports = class Predator extends LivingCreature {
     constructor(x, y) {
-        super(x,y);
+        super(x, y);
         this.directions = [];
     }
 
@@ -40,7 +40,7 @@ module.exports = class Predator extends LivingCreature{
         }
     }
 
-    eat() {
+    eat(we) {
         let found = this.search(1);
         var foundRand = this.random(found);
         let found1 = this.search(2)
@@ -50,6 +50,13 @@ module.exports = class Predator extends LivingCreature{
         let found3 = this.search(5)
         let foundRand3 = this.random(found3)
         if (foundRand1) {
+            if (we == 2) {
+                this.energy += 2;
+            }
+            else {
+                this.energy++
+            }
+            
             this.energy++
             let x = foundRand1[0];
             let y = foundRand1[1];
@@ -64,7 +71,7 @@ module.exports = class Predator extends LivingCreature{
                 }
             }
 
-            if (this.energy >= 75) {
+            if (this.energy >= 85) {
                 this.mul();
 
             }
@@ -96,15 +103,20 @@ module.exports = class Predator extends LivingCreature{
             this.die()
             for (let i in virusArr) {
                 if (x == virusArr[i].x && y == virusArr[i].y) {
-                   virusArr.splice(i, 1);
+                    virusArr.splice(i, 1);
                     break;
                 }
             }
         }
-        
+
 
         else if (foundRand) {
-            this.energy++
+            if (we == 2) {
+                this.energy += 2;
+            }
+            else {
+                this.energy++
+            }
             let x = foundRand[0];
             let y = foundRand[1];
             matrix[y][x] = 3
@@ -118,7 +130,7 @@ module.exports = class Predator extends LivingCreature{
                 }
             }
 
-            if (this.energy >= 75) {
+            if (this.energy >= 85) {
                 this.mul();
 
             }

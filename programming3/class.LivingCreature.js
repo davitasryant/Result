@@ -2,6 +2,7 @@ module.exports = class LivingCreature {
     constructor(x, y) {
         this.x = x;
         this.y = y;
+        this.weather = 
         this.multiplay = 0;
         this.energy = 8;
         this.directions = [
@@ -45,5 +46,4 @@ module.exports = class LivingCreature {
     random(found) {
         return found[Math.floor(Math.random()*found.length)]
     }
-    
 }

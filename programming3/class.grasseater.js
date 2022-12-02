@@ -1,7 +1,7 @@
 var LivingCreature = require("./class.LivingCreature")
-module.exports = class GrassEater extends LivingCreature{
+module.exports = class GrassEater extends LivingCreature {
     constructor(x, y) {
-        super(x,y);
+        super(x, y);
         this.directions = [];
     }
 
@@ -41,7 +41,7 @@ module.exports = class GrassEater extends LivingCreature{
         }
     }
 
-    eat() {
+    eat(we) {
         let found = this.search(1);
         var foundRand = this.random(found);
         let found1 = this.search(4);
@@ -74,14 +74,17 @@ module.exports = class GrassEater extends LivingCreature{
             this.die()
             for (let i in virusArr) {
                 if (x == virusArr[i].x && y == virusArr[i].y) {
-                   virusArr.splice(i, 1);
+                    virusArr.splice(i, 1);
                     break;
                 }
             }
         }
 
         else if (foundRand) {
-            this.energy++
+            if (we == 2) {
+                this.energy += 3
+            }
+            else { this.energy++ }
             let x = foundRand[0];
             let y = foundRand[1];
             matrix[y][x] = matrix[this.y][this.x]
@@ -95,7 +98,7 @@ module.exports = class GrassEater extends LivingCreature{
                 }
             }
 
-            if (this.energy > 35) {
+            if (this.energy > 40) {
                 this.mul()
             }
 

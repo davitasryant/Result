@@ -68,10 +68,30 @@ function draww1(matrix){
 socket.on('display message', draww);
 socket.on('display message1', draww1);
 
+
 function stats(stat){
     document.getElementById('grass').innerHTML = stat.grass
+    document.getElementById('grasseater').innerHTML = stat.grasseater
+    document.getElementById('predator').innerHTML = stat.predator
+    document.getElementById('bonus').innerHTML = stat.mulboost
+    document.getElementById('vir').innerHTML = stat.virus
+}
+function weath(weather){
+    if(weather == 1){
+        document.getElementById('weather').innerHTML = 'Գարուն'
+    }
+    else if(weather == 2){
+        document.getElementById('weather').innerHTML = 'Ամառ'
+    }
+    else if(weather == 3){
+        document.getElementById('weather').innerHTML = 'Աշուն'
+    }
+    else if(weather == 4){
+        document.getElementById('weather').innerHTML = 'Ձմեռ'
+    }
 }
 
 socket.on('grass', stats)
+socket.on('get weather', weath)
 
 

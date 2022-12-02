@@ -1,0 +1,43 @@
+body {
+    background: linear-gradient(90deg, hsla(247, 82%, 2%, 1) 0%, hsla(239, 84%, 10%, 1) 25%, hsla(254, 98%, 16%, 1) 50%, hsla(256, 100%, 24%, 1) 75%, hsla(245, 100%, 32%, 1) 100%);
+
+
+}
+
+.results {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+h3 {
+    font-family: 'Ubuntu', sans-serif;
+    padding: 15px;
+    margin: 8px;
+    border: 1px solid white;
+    border-radius: 13px;
+    color: white;
+}
+
+#defaultCanvas0 {
+    position: absolute;
+    top: 10px;
+}
+
+
+@media only screen and (max-width: 1399px) {
+    body {
+        position: relative;
+    }
+
+    #defaultCanvas0 {
+        top: auto;
+        margin-top: inherit;
+    }
+
+    .results {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+}

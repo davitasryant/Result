@@ -30,9 +30,10 @@ grassEatArr = [];
 predatorArr = [];
 mulBoostArr = [];
 virusArr = [];
-let arr = [1,2]
+let arr = [1, 2]
 matrix = generate(60, 100, 15, 7, 30, 20)
 weather = 1
+bool = true
 
 
 
@@ -130,45 +131,54 @@ function game() {
     }
 
     for (let i in grassEatArr) {
-        grassEatArr[i].eat()
+        grassEatArr[i].eat(weather)
     }
 
     for (let i in predatorArr) {
-        predatorArr[i].eat()
+        predatorArr[i].eat(weather)
     }
     for (let i in mulBoostArr) {
         mulBoostArr[i].move()
     }
     for (let i in virusArr) {
         virusArr[i].move()
-    }    
-    if(weather == 1){
-    io.sockets.emit('display message', matrix);
     }
-    else if(weather == 2){
+    if (weather == 1) {
+        io.sockets.emit('display message', matrix);
+    }
+    else if (weather == 2) {
+        io.sockets.emit('display message', matrix);
+    }
+    else if (weather == 3) {
+        io.sockets.emit('display message', matrix);
+    }
+    else if (weather == 4) {
         io.sockets.emit('display message1', matrix);
     }
-
+    io.sockets.emit('get weather', weather);
     io.sockets.emit('grass', stat);
     stat.grass = grassArr.length
     stat.grasseater = grassEatArr.length
     stat.predator = predatorArr.length
     stat.mulboost = mulBoostArr.length
     stat.virus = virusArr.length
-    console.log(stat)
+   // console.log(stat)
 }
 function random(found) {
-    return found[Math.floor(Math.random()*found.length)]
+    return found[Math.floor(Math.random() * found.length)]
 }
 
-function weat(){
-    weather = random(arr)
+function weat() {
+    weather++
+    if(weather > 4){
+        weather = 1
+    }
     console.log(weather)
 }
 
 
-setInterval(weat, 10000)
-setInterval(game, 1000)
+setInterval(weat, 5000)
+setInterval(game, 500)
 
 
 
