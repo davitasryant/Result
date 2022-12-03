@@ -2,7 +2,6 @@ module.exports = class LivingCreature {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.weather = 
         this.multiplay = 0;
         this.energy = 8;
         this.directions = [

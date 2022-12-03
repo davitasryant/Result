@@ -1,9 +1,9 @@
-
 Grass = require("./programming3/class.grass")
 GrassEater = require("./programming3/class.grasseater")
 Predator = require("./programming3/class.predator")
 Mulboost = require("./programming3/class.mulboost")
 Virus = require("./programming3/class.virus")
+Trap = require("./programming3/class.trap")
 
 var express = require("express");
 var app = express();
@@ -18,27 +18,48 @@ app.get("/", function (req, res) {
 
 server.listen(3000);
 
+io.on('connection', function (socket) {
+
+    socket.on('restartTheGame', play)
+    console.log("Connected")
+
+});
+
+function play(){
+    a = random(grassArr)
+    console.log(a)
+    x = a.x
+    y = a.y
+    matrix[y][x] = 5
+    for (var i in grassArr) {
+        if (x == grassArr[i].x && y == grassArr[i].y) {
+            grassArr.splice(i, 1);
+            break;
+        }
+    }
+    let newVirus = new Virus(x, y);
+    virusArr.push(newVirus);
+
+}
+
 stat = {
     grass: 0,
     grasseater: 0,
     predator: 0,
     mulboost: 0,
     virus: 0,
+    trap: 0
 }
 grassArr = [];
 grassEatArr = [];
 predatorArr = [];
 mulBoostArr = [];
 virusArr = [];
-let arr = [1, 2]
-matrix = generate(60, 100, 15, 7, 30, 20)
+trapArr = [];
+matrix = generate(60, 100, 15, 7, 30, 20, 10)
 weather = 1
-bool = true
 
-
-
-
-function generate(matLen, gr, grEat, pred, mB, virus) {
+function generate(matLen, gr, grEat, pred, mB, virus, trap) {
     let matrix = []
     for (let i = 0; i < matLen; i++) {
         matrix[i] = []
@@ -86,9 +107,21 @@ function generate(matLen, gr, grEat, pred, mB, virus) {
         }
     }
 
+    for (let i = 0; i < trap; i++) {
+        let x = Math.floor(Math.random() * matLen)
+        let y = Math.floor(Math.random() * matLen)
+        if (matrix[y][x] == 0) {
+            matrix[y][x] = 6
+        }
+    }
 
     return matrix
 }
+
+function random(found) {
+    return found[Math.floor(Math.random()*found.length)]
+}
+
 
 
 
@@ -117,13 +150,12 @@ for (let y = 0; y < matrix.length; y++) {
             let virus = new Virus(x, y)
             virusArr.push(virus)
         }
+        else if(matrix[y][x] == 6) {
+            let trap = new Trap(x, y)
+            trapArr.push(trap)
+        }
     }
 }
-io.on('connection', function (socket) {
-
-    console.log("Connected")
-
-});
 
 function game() {
     for (let i in grassArr) {
@@ -142,6 +174,9 @@ function game() {
     }
     for (let i in virusArr) {
         virusArr[i].move()
+    }
+    for (let i in trapArr){
+        trapArr[i].eat()
     }
     if (weather == 1) {
         io.sockets.emit('display message', matrix);
@@ -162,15 +197,13 @@ function game() {
     stat.predator = predatorArr.length
     stat.mulboost = mulBoostArr.length
     stat.virus = virusArr.length
-   // console.log(stat)
-}
-function random(found) {
-    return found[Math.floor(Math.random() * found.length)]
+    stat.trap = trapArr.length
+    console.log(stat)
 }
 
 function weat() {
     weather++
-    if(weather > 4){
+    if (weather > 4) {
         weather = 1
     }
     console.log(weather)
@@ -179,6 +212,15 @@ function weat() {
 
 setInterval(weat, 5000)
 setInterval(game, 500)
+
+
+
+
+
+
+
+
+
 
 
 

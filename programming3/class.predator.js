@@ -49,15 +49,28 @@ module.exports = class Predator extends LivingCreature {
         let foundRand2 = this.random(found2)
         let found3 = this.search(5)
         let foundRand3 = this.random(found3)
-        if (foundRand1) {
+        if (foundRand3) {
+            let x = foundRand3[0];
+            let y = foundRand3[1];
+            matrix[y][x] = 3
+            matrix[this.y][this.x] = 0
+            this.x = x
+            this.y = y
+            this.die()
+            for (let i in virusArr) {
+                if (x == virusArr[i].x && y == virusArr[i].y) {
+                    virusArr.splice(i, 1);
+                    break;
+                }
+            }
+        }
+        else if (foundRand1) {
             if (we == 2) {
                 this.energy += 2;
             }
             else {
                 this.energy++
             }
-            
-            this.energy++
             let x = foundRand1[0];
             let y = foundRand1[1];
             matrix[y][x] = 3
@@ -93,21 +106,7 @@ module.exports = class Predator extends LivingCreature {
             }
         }
 
-        else if (foundRand3) {
-            let x = foundRand3[0];
-            let y = foundRand3[1];
-            matrix[y][x] = 3
-            matrix[this.y][this.x] = 0
-            this.x = x
-            this.y = y
-            this.die()
-            for (let i in virusArr) {
-                if (x == virusArr[i].x && y == virusArr[i].y) {
-                    virusArr.splice(i, 1);
-                    break;
-                }
-            }
-        }
+
 
 
         else if (foundRand) {

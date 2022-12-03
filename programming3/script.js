@@ -7,7 +7,9 @@ function setup() {
     background('#acacac');
 }
 
-
+function restartButton(){
+    socket.emit('restartTheGame')
+}
 
 function draww(matrix) {
     for (var y = 0; y < matrix.length; y++) {
@@ -31,7 +33,9 @@ function draww(matrix) {
             else if (matrix[y][x] == 5) {
                 fill('darkgreen');
             }
-
+            else if (matrix[y][x] == 6) {
+                fill('blue');
+            }
             rect(x * side, y * side, side, side);
         }
     }
@@ -59,6 +63,9 @@ function draww1(matrix){
             else if (matrix[y][x] == 5) {
                 fill('black');
             }
+            else if (matrix[y][x] == 6) {
+                fill('blue');
+            }
 
             rect(x * side, y * side, side, side);
         }
@@ -75,6 +82,7 @@ function stats(stat){
     document.getElementById('predator').innerHTML = stat.predator
     document.getElementById('bonus').innerHTML = stat.mulboost
     document.getElementById('vir').innerHTML = stat.virus
+    document.getElementById('trap').innerHTML = stat.trap
 }
 function weath(weather){
     if(weather == 1){
@@ -92,6 +100,4 @@ function weath(weather){
 }
 
 socket.on('grass', stats)
-socket.on('get weather', weath)
-
-
+socket.on('get weather', weath);
